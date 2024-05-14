@@ -1,5 +1,6 @@
 package com.andresgmoran.engine;
 
+import com.andresgmoran.engine.math.MathUtils;
 import com.andresgmoran.engine.math.Vector2;
 
 import java.awt.image.BufferedImage;
@@ -118,6 +119,9 @@ public abstract class Entity {
     }
     public void hit(Entity e, float damage){
         e.hp -= damage;
+        e.hp = MathUtils.clamp(e.hp,0);
     }
-    public abstract void update();
+    public abstract void update(double deltaTime);
+    public abstract void lastUpdate(double deltaTime);
+    public abstract void postUpdate(double deltaTime);
 }
