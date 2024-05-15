@@ -1,6 +1,4 @@
-package com.andresgmoran.engine;
-
-import java.awt.*;
+package com.andresgmoran.engine.core;
 
 public class Collider {
 

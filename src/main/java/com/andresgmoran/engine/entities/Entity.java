@@ -1,11 +1,13 @@
-package com.andresgmoran.engine;
+package com.andresgmoran.engine.entities;
 
+import com.andresgmoran.engine.core.Collider;
+import com.andresgmoran.engine.core.Updatable;
 import com.andresgmoran.engine.math.MathUtils;
 import com.andresgmoran.engine.math.Vector2;
 
 import java.awt.image.BufferedImage;
 
-public abstract class Entity {
+public abstract class Entity implements Updatable {
     private static int idAutoincrement;
     private final int id;
     private final Vector2 position;
@@ -121,7 +123,10 @@ public abstract class Entity {
         e.hp -= damage;
         e.hp = MathUtils.clamp(e.hp,0);
     }
+    @Override
     public abstract void update(double deltaTime);
+    @Override
     public abstract void lastUpdate(double deltaTime);
+    @Override
     public abstract void postUpdate(double deltaTime);
 }
