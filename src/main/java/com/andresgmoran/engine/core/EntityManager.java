@@ -10,11 +10,13 @@ public abstract class EntityManager implements Updatable{
     private final Entity[] entities;
     private int numEntities;
     private final List<PlayableEntity> playableEntities;
+    private final AssetManager assetManager;
 
     public EntityManager(int maxEntities) {
         entities = new Entity[maxEntities];
         numEntities = 0;
         playableEntities = new ArrayList<>();
+        assetManager = createAssetManager();
     }
 
     public boolean addEntity(Entity entity) {
@@ -27,6 +29,8 @@ public abstract class EntityManager implements Updatable{
         }
         return false;
     }
+
+    public abstract AssetManager createAssetManager();
 
     public void removeEntity(Entity entity) {
         for (int i = 0; i < numEntities; i++) {

@@ -10,15 +10,15 @@ public class SnakeGame extends Game {
     private final int cols;
     private final SnakeEntityManager entityManager;
 
-    public SnakeGame(int width, int height, int rows, int cols, float fpsLimit) {
-        super(width, height, fpsLimit);
+    public SnakeGame(int width, int height, int rows, int cols, float fpsLimit, int maxEntities) {
+        super(width, height, fpsLimit, maxEntities);
         this.rows = rows;
         this.cols = cols;
         entityManager = (SnakeEntityManager) Blackboard.entityManager;
     }
 
     @Override
-    public EntityManager createEntityManager() {
+    public EntityManager createEntityManager(int maxEntities) {
         return new SnakeEntityManager(Settings.MAX_ENTITIES);
     }
 

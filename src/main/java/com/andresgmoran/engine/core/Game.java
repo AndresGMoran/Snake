@@ -10,17 +10,17 @@ public abstract class Game implements Runnable, Updatable {
     private boolean finished;
     private RenderAPI renderAPI;
 
-    public Game(int width, int height, float fpsLimit) {
+    public Game(int width, int height, float fpsLimit, int maxEntities) {
         this.width = width;
         this.height = height;
         this.fpsLimit = fpsLimit;
         this.finished = false;
-        Blackboard.entityManager = createEntityManager();
+        Blackboard.entityManager = createEntityManager(maxEntities);
     }
     public void setRenderAPI(RenderAPI renderAPI){
         this.renderAPI = renderAPI;
     }
-    public abstract EntityManager createEntityManager();
+    public abstract EntityManager createEntityManager(int maxEntities);
 
     public void start() {
         thread = new Thread(this);

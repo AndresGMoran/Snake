@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AssetManager {
+public abstract class AssetManager {
     private final Map<String,BufferedImage> sprites;
 
     public AssetManager() {
@@ -25,4 +25,5 @@ public class AssetManager {
     public BufferedImage getSprite(String name) {
         return sprites.get(name);
     }
+    public abstract void loadAll();
 }

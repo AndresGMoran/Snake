@@ -18,7 +18,7 @@ public class SnakeSwingRenderer extends SwingRender {
 
     @Override
     public void drawBackground(Graphics2D g2) {
-        g2.setColor(Color.gray);
+        g2.setColor(Color.blue);
         g2.fillRect(0, 0, getWidth(), getHeight());
     }
 }
