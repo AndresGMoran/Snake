@@ -5,15 +5,17 @@ import com.andresgmoran.engine.graphics.RenderAPI;
 public abstract class Game implements Runnable, Updatable {
     private final int width;
     private final int height;
-    private final float fpsLimit;
+    private float fpsLimit;
+    private float updateLimit;
     private Thread thread;
     private boolean finished;
     private RenderAPI renderAPI;
 
-    public Game(int width, int height, float fpsLimit, int maxEntities) {
+    public Game(int width, int height, float fpsLimit, float updateLimit, int maxEntities) {
         this.width = width;
         this.height = height;
         this.fpsLimit = fpsLimit;
+        this.updateLimit = updateLimit;
         this.finished = false;
         Blackboard.entityManager = createEntityManager(maxEntities);
     }
@@ -33,20 +35,39 @@ public abstract class Game implements Runnable, Updatable {
         final double NANOS_BETWEEN_UPDATES = 1_000_000_000 / fpsLimit;
         long currentFrame;
         long lastFrame = currentFrame = System.nanoTime();
+        long lastUpdateFrame = lastFrame = System.nanoTime();
         double deltaTime;
         System.out.println("Iniciando hilo ...");
         while (!finished) {
             currentFrame = System.nanoTime();
             deltaTime = (double)(currentFrame - lastFrame) / NANO_IN_SECOND;
-            if (currentFrame - lastFrame > NANOS_BETWEEN_UPDATES) {
-                processInput();
-                update(deltaTime);
-                postUpdate(deltaTime);
-                lastUpdate(deltaTime);
+            if (updateLimit > 0) {
+                double nanosBetweenUpdates = NANO_IN_SECOND / updateLimit;
+                if (currentFrame - lastUpdateFrame >= nanosBetweenUpdates) {
+                    updateGame(deltaTime);
+                    lastUpdateFrame = currentFrame;
+                }
+            } else {
+                updateGame(deltaTime);
+            }
+
+            if (fpsLimit > 0) {
+                double nanosBetweenFrames = NANO_IN_SECOND / fpsLimit;
+                if (currentFrame - lastFrame > nanosBetweenFrames) {
+                    render();
+                    lastFrame = currentFrame;
+                }
+            } else {
                 render();
                 lastFrame = currentFrame;
             }
         }
+    }
+    private void updateGame(double deltaTime) {
+        processInput();
+        update(deltaTime);
+        postUpdate(deltaTime);
+        lastUpdate(deltaTime);
     }
 
     private void render() {

@@ -7,4 +7,5 @@ public class Settings {
     public static final int COLS = 20;
     public static final int TARGET_FPS = 60;
     public static final int MAX_ENTITIES = 10;
+    public static  int CELL_SIZE = 20;
 }
