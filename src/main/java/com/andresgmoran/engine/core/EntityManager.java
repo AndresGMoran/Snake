@@ -51,6 +51,14 @@ public abstract class EntityManager implements Updatable{
         return numEntities;
     }
 
+    public AssetManager getAssetManager() {
+        return assetManager;
+    }
+
+    public List<PlayableEntity> getPlayableEntities() {
+        return playableEntities;
+    }
+
     @Override
     public void update(double deltaTime) {
         for (int i = 0; i < numEntities; i++) {

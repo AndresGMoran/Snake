@@ -1,6 +1,7 @@
 package com.andresgmoran.game.graphics;
 
 import com.andresgmoran.engine.core.Blackboard;
+import com.andresgmoran.engine.core.ResizeListener;
 import com.andresgmoran.engine.entities.Entity;
 import com.andresgmoran.engine.graphics.swing.SwingRender;
 import com.andresgmoran.game.config.Settings;
@@ -8,8 +9,8 @@ import com.andresgmoran.game.config.Settings;
 import java.awt.*;
 
 public class SnakeSwingRenderer extends SwingRender {
-    public SnakeSwingRenderer(int width, int height) {
-        super(width, height);
+    public SnakeSwingRenderer(int width, int height, ResizeListener resizeListener) {
+        super(width, height, resizeListener);
     }
 
     @Override
@@ -28,7 +29,5 @@ public class SnakeSwingRenderer extends SwingRender {
                 g2.drawRect(col * Blackboard.cellSize, row * Blackboard.cellSize, Blackboard.cellSize, Blackboard.cellSize);
             }
         }
-
-
     }
 }

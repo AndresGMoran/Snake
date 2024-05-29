@@ -3,6 +3,7 @@ package com.andresgmoran.game.config;
 import java.awt.*;
 
 public class Settings {
+    // General Settings
     public static final int WIDTH = 800;
     public static final int HEIGHT = 800;
     public static final int ROWS = 20;
@@ -11,6 +12,11 @@ public class Settings {
     public static final int TARGET_UPS = 60;
     public static final int MAX_ENTITIES = 10;
 
+    // Game Settings
+    public static final int SNAKE_HP = 1;
+    public static final int SNAKE_DAMAGE = 1;
+    public static final int SNAKE_COLLIDER_OFFSET = 5;
+    public static final int FOOD_COLLIDER_OFFSET = SNAKE_COLLIDER_OFFSET;
 
 
     // Color Settings

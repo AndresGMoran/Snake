@@ -5,7 +5,7 @@ import com.andresgmoran.engine.math.Vector2;
 
 import java.awt.image.BufferedImage;
 
-public class DynamicEntity extends Entity{
+public abstract class DynamicEntity extends Entity{
     private Vector2 velocity;
     private float linearVelocity;
     private float acceleration;
@@ -38,19 +38,21 @@ public class DynamicEntity extends Entity{
         initDynamicEntity(velocityX, velocityY, linearVelocity, acceleration);
     }
 
+    public void setVelocity(float x, float y) {
+        this.velocity.setX(x);
+        this.velocity.setY(y);
+    }
+
     @Override
     public void update(double deltaTime) {
         linearVelocity += (float) (acceleration * deltaTime);
-
+        velocity.normalize().mul(linearVelocity);
+        getPosition().mular(velocity,(float) deltaTime);
     }
 
     @Override
-    public void lastUpdate(double deltaTime) {
-
-    }
+    public abstract void lastUpdate(double deltaTime);
 
     @Override
-    public void postUpdate(double deltaTime) {
-
-    }
+    public abstract void postUpdate(double deltaTime);
 }

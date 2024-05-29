@@ -2,9 +2,9 @@ package com.andresgmoran.engine.core;
 
 import com.andresgmoran.engine.graphics.RenderAPI;
 
-public abstract class Game implements Runnable, Updatable {
-    private final int width;
-    private final int height;
+public abstract class Game implements Runnable, Updatable, ResizeListener {
+    private int width;
+    private int height;
     private float fpsLimit;
     private final float upsLimit;
     private Thread thread;
@@ -84,4 +84,20 @@ public abstract class Game implements Runnable, Updatable {
     private void processInput() {
         Blackboard.entityManager.processInput();
     }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    @Override
+    public void onResize(int width, int height){
+        this.width = width;
+        this.height = height;
+        gameResized();
+    }
+    public abstract void gameResized();
 }

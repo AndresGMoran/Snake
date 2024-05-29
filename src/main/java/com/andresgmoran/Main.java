@@ -9,8 +9,8 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        SnakeGame snakeGame = new SnakeGame(Settings.WIDTH, Settings.HEIGHT, Settings.ROWS, Settings.COLS, Settings.TARGET_FPS, Settings.MAX_ENTITIES);
-        SnakeSwingRenderer snakeSwingRenderer = new SnakeSwingRenderer(Settings.WIDTH, Settings.HEIGHT);
+        SnakeGame snakeGame = new SnakeGame(Settings.WIDTH, Settings.HEIGHT, Settings.ROWS, Settings.COLS, Settings.TARGET_FPS, Settings.TARGET_UPS,Settings.MAX_ENTITIES);
+        SnakeSwingRenderer snakeSwingRenderer = new SnakeSwingRenderer(Settings.WIDTH, Settings.HEIGHT, snakeGame);
         snakeGame.setRenderAPI(snakeSwingRenderer);
         JFrame frame = new JFrame();
         frame.setResizable(false);

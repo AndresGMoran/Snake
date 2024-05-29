@@ -6,6 +6,7 @@ public class SnakeAssetManager extends AssetManager {
 
     @Override
     public void loadAll() {
-        loadSprite("player","");
+        loadSprite("player", "/sprites/snake.jpg");
+        loadSprite("food", "/sprites/snake.jpg");
     }
 }

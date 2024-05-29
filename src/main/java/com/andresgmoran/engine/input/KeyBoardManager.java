@@ -25,8 +25,31 @@ public class KeyBoardManager implements KeyListener {
         this.rightKey = Character.toLowerCase(rightKey);
         this.fireKey = Character.toLowerCase(fireKey);
         this.jumpKey = Character.toLowerCase(jumpKey);
-
         up = down = left = right = fire = jump = false;
+    }
+
+    public boolean isDown() {
+        return down;
+    }
+
+    public boolean isFire() {
+        return fire;
+    }
+
+    public boolean isJump() {
+        return jump;
+    }
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    public boolean isRight() {
+        return right;
+    }
+
+    public boolean isUp() {
+        return up;
     }
 
     @Override
@@ -39,12 +62,12 @@ public class KeyBoardManager implements KeyListener {
         char c = e.getKeyChar();
         if (c == upKey) {
             up = true;
-        }else if (c == downKey) {
+        } else if (c == downKey) {
             down = true;
         }
         if (c == leftKey) {
             left = true;
-        }else if (c == rightKey) {
+        } else if (c == rightKey) {
             right = true;
         }
         if (c == fireKey) {
@@ -57,6 +80,22 @@ public class KeyBoardManager implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        char c = e.getKeyChar();
+        if (c == upKey) {
+            up = false;
+        } else if (c == downKey) {
+            down = false;
+        }
+        if (c == leftKey) {
+            left = false;
+        } else if (c == rightKey) {
+            right = false;
+        }
+        if (c == fireKey) {
+            fire = false;
+        }
+        if (c == jumpKey) {
+            jump = false;
+        }
     }
 }
